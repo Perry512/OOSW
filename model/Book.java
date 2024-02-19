@@ -40,7 +40,48 @@ public abstract class Book extends EntityBase implements IView {
         if (resultRaw != null) {
 
             int size = resultRaw.size();
+
+            if (size != 1) {
+
+                throw new InvalidPrimaryKeyException("Multiple Books found");
+
+            } else {
+
+                Properties retrievedBookData = resultRaw.elementAt(0);
+                persistentState = new Properties();
+
+                Enumeration allKeys = retrievedBookData.propertyNames();
+
+                while (allKeys.hasMoreElements() == true) {
+
+                    String nextKey = (String)allKeys.nextElement();
+                    String nextValue = retrievedBookData.getProperty(nextKey);
+                    // int bookNumber = Integer.parseInt(retrievedBookData.getProperty("bookNumber"));
+
+                    if (nextValue != null) {
+
+                        persistentState.setProperty(nextKey, nextValue);
+
+                    }
+
+                }
+            }
+
+        } else { // where book is not found
+
+            throw new InvalidPrimaryKeyException("No Book matching id: " + bookNumber);
+
         }
 
+    }
+
+    public Book(Properties props) {
+
+        super(myTableName);
+        
+        // setDependencies();
+        persistentState = new Properties();
+        Enumeration allKeys = props.propertyNames();
+        
     }
 }
