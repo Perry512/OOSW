@@ -17,7 +17,7 @@ import userinterface.ViewFactory;
 
 public abstract class Book extends EntityBase implements IView {
 
-    private static final String myTableName = "Account";
+    private static final String myTableName = "Book";
 
     protected Properties dependencies;
 
@@ -32,6 +32,7 @@ public abstract class Book extends EntityBase implements IView {
 
         super(myTableName);
 
+        setDependencies();
         String query = "SELECT * FROM " + myTableName + " WHERE (BookId = " + bookNumber + ")";
 
         Vector<Properties> resultRaw = getSelectQueryResult(query);
@@ -203,7 +204,7 @@ public abstract class Book extends EntityBase implements IView {
         if(mySchema == null) {
 
             mySchema = getSchemaInfo(tableName);
-            
+
         }
     }
 }
