@@ -17,9 +17,9 @@ import userinterface.ViewFactory;
 
 public abstract class BookCollection extends EntityBase implements IView {
 
-    private static final String myTableName = "Account";
+    private static final String myTableName = "Book";
 
-    private Vector<Account> bookList;
+    private Vector<Book> bookList;
     //GUI
 
     //constructor
@@ -56,6 +56,18 @@ public abstract class BookCollection extends EntityBase implements IView {
                 return resultRaw;
             }
         }
+    }
+
+    public Vector<Book> findBookWithTitleLike(String title) {
+
+        String searchName = title;
+        
+
+    }
+
+    public Vector<Book> findBookWithAuthorLike(String auth) {
+
+        
     }
 
     void instantiateBookList () {

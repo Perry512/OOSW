@@ -158,25 +158,47 @@ public class Patron extends EntityBase implements IView {
             updateStatusMessage = "Error in installing patron data in database: " + e;
 
         }
+        // maybe useful debug System.out.println("updateState: " + updateStatusMessage);
+    }
 
-        public Vector<String> getEntryListView() {
+    public Vector<String> getEntryListView() {
 
-            Vector<String> v = new Vector<String>();
+        Vector<String> v = new Vector<String>();
 
-            v.addElement(persistentState.getProperty("patronId"));
-            v.addElement(persistentState.getProperty("name"));
-            v.addElement(persistentState.getProperty("address"));
-            v.addElement(persistentState.getProperty("city"));
-            v.addElement(persistentState.getProperty("stateCode"));
-            v.addElement(persistentState.getProperty("zip"));
-            v.addElement(persistentState.getProperty("email"));
-            v.addElement(persistentState.getProperty("dateOfBirth"));
-            v.addElement(persistentState.getProperty("status"));
+        v.addElement(persistentState.getProperty("patronId"));
+        v.addElement(persistentState.getProperty("name"));
+        v.addElement(persistentState.getProperty("address"));
+        v.addElement(persistentState.getProperty("city"));
+        v.addElement(persistentState.getProperty("stateCode"));
+        v.addElement(persistentState.getProperty("zip"));
+        v.addElement(persistentState.getProperty("email"));
+        v.addElement(persistentState.getProperty("dateOfBirth"));
+        v.addElement(persistentState.getProperty("status"));
 
-            return v;
-
-        }
+        return v;
 
     }
+
+    protected void initializeSchema(String tableName) {
+
+        if (mySchema == null) {
+
+            mySchema = getSchemaInfo(tableName);
+
+        }
+    }
+
+    public String toString() {
+
+        return "Patron: " + persistentState.getProperty("patronId") + "; Name: " +
+            persistentState.getProperty("name") + "; Address: " +
+            persistentState.getProperty("address") + "; city: " + 
+            persistentState.getProperty("city") + "; stateCode: " +
+            persistentState.getProperty("stateCode") + "; zip: " +
+            persistentState.getProperty("zip") + "; email: " + 
+            persistentState.getProperty("dateOfBirth") + "; status: " +
+            persistentState.getProperty("status");
+
+    }    
     
 }

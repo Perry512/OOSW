@@ -207,4 +207,12 @@ public abstract class Book extends EntityBase implements IView {
 
         }
     }
+
+    public String toString() {
+
+        return "Book: " + persistentState.getProperty("bookTitle") + "; Author: " +
+            persistentState.getProperty("author") + "; Year: " +
+            persistentState.getProperty("pubYear");
+            
+}
 }
