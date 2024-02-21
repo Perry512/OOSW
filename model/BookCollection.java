@@ -75,6 +75,16 @@ public abstract class BookCollection extends EntityBase implements IView {
         bookList = new Vector<>();
 
         return;
+
+    }
+
+    protected void initializeSchema(String tableName) {
+
+        if (mySchema == null) {
+
+            mySchema = getSchemaInfo(tableName);
+            
+        }
     }
 
 
