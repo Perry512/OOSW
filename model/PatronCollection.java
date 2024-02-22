@@ -46,11 +46,11 @@ public abstract class PatronCollection extends EntityBase implements IView {
 
         }
 
-        String query = "SELECT * FROM " + myTableName + " WHERE (patronId = " + patronId ")"
+        String query = "SELECT * FROM " + myTableName + " WHERE (patronId = " + patronId + ")";
 
         Vector allDataRetrieved = getSelectQueryResult(query);
 
-        if (patronId == null) {
+        if (allDataRetrieved != null) {
 
             patrons = new Vector<Patron>();
 
@@ -96,7 +96,6 @@ public abstract class PatronCollection extends EntityBase implements IView {
             Patron midSession = patrons.elementAt(middle);
 
             int result = Patron.compare(p, midSession);
-            //TODO: add COMPARE method to Patron class
 
             if (result == 0) {
 
@@ -196,4 +195,102 @@ public abstract class PatronCollection extends EntityBase implements IView {
         
     }
 
+    public Vector<Patron> findPartonsOlderThan(int year) {
+
+        String query = "'SELECT * FROM " + myTableName + " WHERE dateOfBith <= " + fixDateFormat(year) + ")'";
+        Vector<Patron> resultUnp = getSelectQueryResult(query);
+
+        if (resultUnp != null) {
+
+            if (resultUnp.size() <= 0) {
+
+                System.out.println("No Patron born before " + year + " found\n");
+
+            } else {
+
+                return resultUnp;
+
+            }
+
+        }
+
+        return new Vector<>();
+
+    }
+
+    public Vector<Patron> findPatronsOlderThan(int year) {
+
+        String query = "SELECT * FROM " + myTableName + " WHERE dateOfBirth >= " + fixDateFormat(year) + ")";
+        Vector<Patron> resultUnp = getSelectQueryResult(query);
+
+        if (resultUnp != null) {
+
+            if(resultUnp.size() <= 0) {
+
+                System.out.println("No Patron born after " + year + " found\n");
+
+            } else {
+
+                return resultUnp;
+
+            }
+
+        }
+
+        return new Vector<>();
+
+    }
+
+    public Vector<Patron> findPatronsAtZipCode(int zip) {
+
+        String query = "SELECT * FROM " + myTableName + " WHERE zip LIKE '%" + zip + "%'";
+        Vector<Patron> resultUnp = getSelectQueryResult(query);
+
+        if (resultUnp != null) {
+
+            if (resultUnp.size() <= 0) {
+
+                System.out.println("No Patron with Zip: " + zip + " found\n");
+
+            } else {
+
+                return resultUnp;
+
+            }
+
+        } 
+        
+        return new Vector<>();
+
+    }
+
+    public Vector<Patron> findPatronsWithNameLike(String name) {
+
+        String query = "SELECT * FROM '" + myTableName + "' WHERE name LIKE '%" + name + "%'";
+        Vector<Patron> resultUnp = getSelectQueryResult(query);
+
+        if(resultUnp != null) {
+
+            if (resultUnp.size() <= 0) {
+
+                System.out.println("No Patrons with name like: " + name + " found\n");
+
+            } else {
+
+                return resultUnp;
+
+            }
+
+        }
+
+        return new Vector<>();
+
+    }
+
+
+    private int fixDateFormat(int yearIn) {
+
+        return (yearIn % 10000);
+
+    }
 }

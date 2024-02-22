@@ -200,5 +200,13 @@ public class Patron extends EntityBase implements IView {
             persistentState.getProperty("status");
 
     }    
+
+    public static int compare(Patron pat1, Patron pat2){
+        String aNum = (String)pat1.getState("patronId");
+        String bNum = (String)pat2.getState("patronId");
+
+        return aNum.compareTo(bNum);
+
+    }
     
 }

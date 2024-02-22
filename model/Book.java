@@ -214,5 +214,5 @@ public abstract class Book extends EntityBase implements IView {
             persistentState.getProperty("author") + "; Year: " +
             persistentState.getProperty("pubYear");
             
-}
+    }
 }

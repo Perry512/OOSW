@@ -30,22 +30,35 @@ public abstract class BookCollection extends EntityBase implements IView {
     }
 
     public Vector<Book> findBooksOlderThan(String year) {
-        String searchYear = year;
-        Vector<Book>correctBooks = new Vector<>();
+        int searchYear = Integer.parseInt(year);
+        String query = "SELECT * FROM " + " WHERE (pubYear >= " + fixDateFormat(searchYear) + ")";
+        Vector<Book> resultUnp = getSelectQueryResult(query);
 
-        return correctBooks;
+        if (resultUnp != null) {
+
+            if (resultUnp.size() <=0) {
+
+                System.out.println("No Books made after " + year + " found\n");
+
+            } else {
+
+                return resultUnp;
+
+            }
+
+        }
+
+        return new Vector<>();
         
     }
 
-    public void findBooksYoungerThan(String year) {
+    public Vector<Book> findBooksYoungerThan(String year) {
         int searchYear = Integer.parseInt(year);
-        String query = "SELECT * FROM " + myTableName + " WHERE (pubYear <= " + searchYear + ")";
+        String query = "SELECT * FROM '" + myTableName + "' WHERE (pubYear <= " + fixDateFormat(searchYear) + ")";
         Vector<Book> resultUnp = getSelectQueryResult(query);
 
         //handle recieved data
         if (resultUnp != null) {
-            
-            Vector<Book> foundBooks;
 
             if (resultUnp.size() <= 0) {
 
@@ -53,12 +66,13 @@ public abstract class BookCollection extends EntityBase implements IView {
 
             } else {
 
-                System.out.println((Book)resultUnp.toString());
-                //return resultUnp.toString();
+                //System.out.println((Book)resultUnp.toString());
+                return resultUnp;
             }
+
         }
 
-        //return new Vector(); // return empty vector if nothing is found
+        return new Vector(); // return empty vector if nothing is found
 
     }
 
@@ -70,17 +84,45 @@ public abstract class BookCollection extends EntityBase implements IView {
 
         if(resultUnp != null) {
 
-            int (size <= 0) {
+            if (resultUnp.size() <= 0) {
 
-                System.out.println("No Books with title like: " + );
+                System.out.println("No Books with title like: " + title + " found\n");
+
+            } else { 
+
+                return resultUnp;
             }
         }
 
+        return new Vector(); //return an empty Vector if nothing found
 
     }
 
     public Vector<Book> findBookWithAuthorLike(String auth) {
 
+        String searchName = auth;
+        String query = "SELECT * FROM " + myTableName + " WHERE author LIKE '%" + auth + "%'";
+        Vector<Book> resultUnp = getSelectQueryResult(query);
+
+        if (resultUnp == null) {
+
+            return new Vector(); // return an empty Vector if nothing found
+
+        } else {
+
+            if (resultUnp.size() <= 0) {
+
+                System.out.println("No Books with author: " + auth + " found\n");
+
+            } else {
+
+                return resultUnp;
+
+            }
+
+        }
+
+        return new Vector();
         
     }
 
@@ -101,5 +143,10 @@ public abstract class BookCollection extends EntityBase implements IView {
         }
     }
 
+    private int fixDateFormat(int fullDate) {
+
+        return (fullDate % 10000);
+
+    }
 
 }
