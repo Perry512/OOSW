@@ -46,6 +46,7 @@ public abstract class BookCollection extends EntityBase implements IView {
         if (resultRaw != null) {
             
             int size = resultRaw.size();
+            resultRaw = new Vector();
 
             if (size <= 0) {
 
@@ -83,7 +84,7 @@ public abstract class BookCollection extends EntityBase implements IView {
         if (mySchema == null) {
 
             mySchema = getSchemaInfo(tableName);
-            
+
         }
     }
 
