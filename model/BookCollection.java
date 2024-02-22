@@ -37,31 +37,45 @@ public abstract class BookCollection extends EntityBase implements IView {
         
     }
 
-    public Vector<Book> findBooksYoungerThan(String year) {
+    public void findBooksYoungerThan(String year) {
         int searchYear = Integer.parseInt(year);
-        String query = "SELECT * FROM " + myTableName + "WHERE (pubYear <= " + searchYear + ")";
-        Vector<Book> resultRaw = getSelectQueryResult(query);
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubYear <= " + searchYear + ")";
+        Vector<Book> resultUnp = getSelectQueryResult(query);
 
         //handle recieved data
-        if (resultRaw != null) {
+        if (resultUnp != null) {
             
-            int size = resultRaw.size();
+            Vector<Book> foundBooks;
 
-            if (size <= 0) {
+            if (resultUnp.size() <= 0) {
 
-                System.out.println("No Books of size " + size + " found\n");
+                System.out.println("No Books made after " + year + " found\n");
 
             } else {
 
-                return resultRaw;
+                System.out.println((Book)resultUnp.toString());
+                //return resultUnp.toString();
             }
         }
+
+        //return new Vector(); // return empty vector if nothing is found
+
     }
 
     public Vector<Book> findBookWithTitleLike(String title) {
 
         String searchName = title;
-        
+        String query = "SELECT * FROM " + myTableName + " WHERE bookTitle LIKE '%" + title + "%'";
+        Vector<Book> resultUnp = getSelectQueryResult(query);
+
+        if(resultUnp != null) {
+
+            int (size <= 0) {
+
+                System.out.println("No Books with title like: " + );
+            }
+        }
+
 
     }
 
