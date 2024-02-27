@@ -15,7 +15,7 @@ import impresario.ModelRegistry;
 import userinterface.View;
 import userinterface.ViewFactory;
 
-public abstract class BookCollection extends EntityBase implements IView {
+public class BookCollection extends EntityBase implements IView {
 
     private static final String myTableName = "Book";
 
@@ -147,6 +147,28 @@ public abstract class BookCollection extends EntityBase implements IView {
 
         return (fullDate % 10000);
 
+    }
+
+    @Override
+    public void updateState(String key, Object value) {
+        stateChangeRequest(key, value);
+    }
+
+
+    // UNSURE
+    @Override
+    public Object getState(String key) {
+        if (key.equals("Accounts"))
+			return bookList;
+		else
+		if (key.equals("AccountList"))
+			return this;
+		return null;
+    }
+
+    @Override
+    public void stateChangeRequest(String key, Object value) {
+        myRegistry.updateSubscribers(key, this);
     }
 
 }

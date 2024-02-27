@@ -16,7 +16,7 @@ import impresario.IView;
 import userinterface.View;
 import userinterface.ViewFactory;
 
-public abstract class PatronCollection extends EntityBase implements IView {
+public class PatronCollection extends EntityBase implements IView {
 
     private static final String myTableName = "Patron";
 
@@ -25,6 +25,11 @@ public abstract class PatronCollection extends EntityBase implements IView {
 
     //Constructor
     //
+    public PatronCollection() {
+        super(myTableName);
+        patrons = new Vector<Patron>();
+    }
+
     public PatronCollection(Patron patron) throws Exception {
 
         super(myTableName);
@@ -218,9 +223,9 @@ public abstract class PatronCollection extends EntityBase implements IView {
 
     }
 
-    public Vector<Patron> findPatronsOlderThan(int year) {
+    public Vector<Patron> findPatronsYoungerThan(String year) {
 
-        String query = "SELECT * FROM " + myTableName + " WHERE dateOfBirth >= " + fixDateFormat(year) + ")";
+        String query = "SELECT * FROM " + myTableName + " WHERE dateOfBirth >= ('" + year + "')";
         Vector<Patron> resultUnp = getSelectQueryResult(query);
 
         if (resultUnp != null) {
@@ -241,7 +246,7 @@ public abstract class PatronCollection extends EntityBase implements IView {
 
     }
 
-    public Vector<Patron> findPatronsAtZipCode(int zip) {
+    public Vector<Patron> findPatronsAtZipCode(String zip) {
 
         String query = "SELECT * FROM " + myTableName + " WHERE zip LIKE '%" + zip + "%'";
         Vector<Patron> resultUnp = getSelectQueryResult(query);

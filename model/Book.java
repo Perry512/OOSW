@@ -15,7 +15,7 @@ import impresario.ModelRegistry;
 import userinterface.View;
 import userinterface.ViewFactory;
 
-public abstract class Book extends EntityBase implements IView {
+public class Book extends EntityBase implements IView {
 
     private static final String myTableName = "Book";
 
