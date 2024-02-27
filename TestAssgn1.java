@@ -106,38 +106,51 @@ public class TestAssgn1 {
                     printBooks(bookList);
                     break;
                 case 5:
-                    System.out.println("Please enter date yyyy-mm-dd to find patron younger than this date");
+                    System.out.println("Please enter date ddmmyyyy to find patron younger than this date");
                     pubYear = scan.nextLine();
 
                     pc = new PatronCollection();
                     patronList = pc.findPatronsYoungerThan(pubYear);
                     printPatrons(patronList);
                     break;
+
                 case 6:
+
                     System.out.println("Please enter zipcode");
                     zip = scan.nextLine();
 
                     pc = new PatronCollection();
                     patronList = pc.findPatronsAtZipCode(zip);
                     printPatrons(patronList);
+
                     break;
                 case 7:
+
                     mach = false;
                     break;
+
             }
 
         }
+        
     }
 
     private static void printBooks(Vector<Book> bookList){
         for (Book book : bookList) {
+
             System.out.println(book);
+
         }
+
     }
 
     private static void printPatrons(Vector<Patron> patronList){
+
         for (Patron patron : patronList) {
+
             System.out.println(patron);
         }
+
     }
+
 }
