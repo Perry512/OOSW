@@ -58,6 +58,7 @@ public class TestAssgn1 {
 
                     book = new Book(prop);
                     book.update();
+                    System.out.println("Book with title " + bName + " added to database.");
 
                     break;
                 case 2:

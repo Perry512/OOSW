@@ -2,3 +2,5 @@
 vscode/
 *.json
 *.ini
+ErrorLog.txt
+dbConfig.ini

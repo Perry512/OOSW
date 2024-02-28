@@ -6,8 +6,6 @@ public class Main {
 
         BookCollection bc = new BookCollection();
 
-        String 
-
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
 
