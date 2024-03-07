@@ -4,3 +4,7 @@ vscode/
 *.ini
 ErrorLog.txt
 dbConfig.ini
+*.idea
+*.class
+ErrorLog.txt
+model.*
