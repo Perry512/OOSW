@@ -215,4 +215,11 @@ public class Book extends EntityBase implements IView {
             persistentState.getProperty("pubYear");
             
     }
+    public static int compare(Book book1, Book book2){
+        String aNum = (String)book1.getState("bookId");
+        String bNum = (String)book2.getState("bookId");
+
+        return aNum.compareTo(bNum);
+
+    }
 }

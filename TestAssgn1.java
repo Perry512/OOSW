@@ -1,4 +1,3 @@
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -89,6 +88,7 @@ public class TestAssgn1 {
 
                     patron = new Patron(prop);
                     patron.update();
+                    System.out.println("added to db");
                     break;
                 case 3:
                     System.out.println("Please enter book title (don't need full title)");
@@ -105,16 +105,20 @@ public class TestAssgn1 {
                     bc = new BookCollection();
                     bookList = bc.findBooksOlderThan(pubYear);
                     printBooks(bookList);
+
                     break;
+
                 case 5:
+
                     System.out.println("Please enter date ddmmyyyy to find patron younger than this date");
                     pubYear = scan.nextLine();
 
                     pc = new PatronCollection();
                     patronList = pc.findPatronsYoungerThan(pubYear);
                     printPatrons(patronList);
-                    break;
 
+                    break;
+                    
                 case 6:
 
                     System.out.println("Please enter zipcode");
