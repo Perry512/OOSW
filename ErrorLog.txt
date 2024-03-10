@@ -17,3 +17,5 @@
 [2/27/24 1:36 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/27/24 1:42 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/29/24 11:48 AM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
+[3/7/24 11:35 AM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: (conn=13193) Field 'bookId' doesn't have a default value>
+[3/7/24 11:44 AM]|BookCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: (conn=13289) You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE (pubYear >= 2000)' at line 1>
